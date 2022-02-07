@@ -118,3 +118,5 @@ requires the array to be reallocated, it is a cheap operation in practise. It is
 with performance graphs for list and array implementations on various architecture:
 
 https://kjellkod.wordpress.com/2012/02/25/why-you-should-never-ever-ever-use-linked-list-in-your-code-again/
+
+---
