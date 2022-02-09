@@ -120,3 +120,24 @@ with performance graphs for list and array implementations on various architectu
 https://kjellkod.wordpress.com/2012/02/25/why-you-should-never-ever-ever-use-linked-list-in-your-code-again/
 
 ---
+
+### Stacks
+
+- A stack is an abstract data type with a LIFO (last in, first out) structure. This means the last item of data added is the first to leave.
+- A stack pointer is used to keep track of the top of the stack.
+- The most important operations performed on a stack are:
+  - `Push(Key)` - Add a new data item to the top of the stack
+  - `Key Top()` - Return the data item at the top of the stack (also known as peak or peaking)
+  - `Key Pop()` - Remove and return the data item at the top of the stack
+  - `Boolean Empty()` - Return true if the stack contains any items
+
+Stacks can be used to store information about a running program. A **stack frame** is a collection of data that gets pushed onto a stack. In a **call stack** (a special type of stack used to store information about active subroutines and functions in a program), this would represent a subroutine or function call along with its argument data.
+The function's return address is pushed onto the stack first, so that when the function finishes executing, it will resume execution at the address.
+Stacks can also be useful in many other cases. For example:
+- During recursion or when using nested program constructs.
+- Reversing the contents of a list
+- Syntax parsing
+
+Stacks can be implemented with either an array or a linked list, with each operation being O(1).
+
+---
