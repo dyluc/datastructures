@@ -12,7 +12,7 @@
 > arrayAddress + elementSize *
 > (index - firstIndex)
 > ```
-
+a
 > Multi dimensional 
 > 
 > ```
@@ -129,7 +129,7 @@ https://kjellkod.wordpress.com/2012/02/25/why-you-should-never-ever-ever-use-lin
   - `Push(Key)` - Add a new data item to the top of the stack
   - `Key Top()` - Return the data item at the top of the stack (also known as peak or peaking)
   - `Key Pop()` - Remove and return the data item at the top of the stack
-  - `Boolean Empty()` - Return true if the stack contains any items
+  - `Boolean Empty()` - Return true if the stack is empty
 
 Stacks can be used to store information about a running program. A **stack frame** is a collection of data that gets pushed onto a stack. In a **call stack** (a special type of stack used to store information about active subroutines and functions in a program), this would represent a subroutine or function call along with its argument data.
 The function's return address is pushed onto the stack first, so that when the function finishes executing, it will resume execution at the address.
@@ -141,3 +141,25 @@ Stacks can also be useful in many other cases. For example:
 Stacks can be implemented with either an array or a linked list, with each operation being O(1).
 
 ---
+
+### Queues
+
+- A Queue is an abstract data type with a FIFO (first in, first out) structure. This means the first item of data added is the first to leave.
+- They have the following essential operations:
+  - `Enqueue(Key)` - Adds a new data item to the queue
+  - `Key Dequeue()` - Removes and returns the least recently-added data item
+  - `Boolean Empty()` - Return true if the queue is empty
+
+Queues can be implemented using a linked list with head and tail pointers pointing to the both ends of the queue. This makes enqueue and dequeue operations O(1). In a linked list implementation:
+  - Enqueue - use the linked list `PushBack(Key)` operation
+  - Dequeue - use the linked list `Key PopFront()` operation
+  - Empty - use the linked list `Boolean Empty()` operation
+
+Queues can also be implemented using an array with read and write indexes to track where the next enqueue and dequeue operations should occur. This makes enqueu and dequeue operations O(1). In an array implementation:
+  - Enqueue - insert at the write index, then increment the write index
+  - Dequeue - get item at the read index, then increment the read index
+  - Empty - check if the read and write indexes are the same
+
+We can make use of a circular array here. When an item is enqueued/dequeued at/from the last position in the array, the write/read index can circle back to point to the first position in the array (0, if using 0 based indexing). However, this means that there will come a point when enqueuing a new item will result in the read and write indexes being the same. This should cause an error as there is no way to distinguish this state from an empty queue.
+
+An important distinction between the linked list implementation (with a tail pointer), and the array implementation, is that arrays have a maximum capacity and so remain bounded, unlike the list implementation which can grow infinitely. This causes wasted space for an array implementation, but in contrast every node of a linked list implementation must dedicate memory for its pointer.
