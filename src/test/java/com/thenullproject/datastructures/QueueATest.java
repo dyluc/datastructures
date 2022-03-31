@@ -17,21 +17,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Tests for Queue implementations using a linked list and a static array
+ * Tests for circular Queue implementation using a static array
  */
-public class QueueTest {
+public class QueueATest {
 
     @Test
     @DisplayName("Should create new queue that is empty")
     public void shouldCreateNewEmptyQueue() {
-        QueueLL<String> queue = new QueueLL<>();
+        QueueA queue = new QueueA();
         assertTrue(queue.empty());
+        assertFalse(queue.full());
     }
 
     @Test
     @DisplayName("Should throw no such element exception when trying to dequeue empty queue")
     public void shouldThrowNoSuchElementExceptionOnIllegalDequeue() {
-        QueueLL<Byte> queue = new QueueLL<>();
+        QueueA queue = new QueueA();
         assertThrows(NoSuchElementException.class, queue::dequeue);
     }
 
@@ -42,11 +43,11 @@ public class QueueTest {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class WhenArrayExists {
 
-        private QueueLL<Integer> queue;
+        private QueueA queue;
 
         @BeforeAll
         public void initialiseQueue() {
-            queue = new QueueLL<>();
+            queue = new QueueA();
         }
 
         @Test
@@ -54,9 +55,9 @@ public class QueueTest {
         @Order(1)
         public void enqueue() {
             // enqueue 3 items
-            queue.enqueue(100);
-            queue.enqueue(200);
-            queue.enqueue(300);
+            queue.enqueue('A');
+            queue.enqueue('B');
+            queue.enqueue('C');
 
             // check if empty
             assertFalse(queue.empty());
@@ -67,18 +68,31 @@ public class QueueTest {
         @Order(2)
         public void dequeue() {
             // dequeue 3 items
-            Integer item1 = queue.dequeue();
-            Integer item2 = queue.dequeue();
-            Integer item3 = queue.dequeue();
+            char item1 = (char) queue.dequeue();
+            char item2 = (char) queue.dequeue();
+            char item3 = (char) queue.dequeue();
 
             // assert values dequeued in order
-            assertEquals(100, item1);
-            assertEquals(200, item2);
-            assertEquals(300, item3);
+            assertEquals('A', item1);
+            assertEquals('B', item2);
+            assertEquals('C', item3);
 
             assertTrue(queue.empty());
         }
-
     }
+
+    @Test
+    @DisplayName("Enqueue items should throw illegal state exception when reached max capacity")
+    public void shouldThrowIllegalStateExceptionWhenAtMaxCapacity() {
+        QueueA queue = new QueueA();
+
+        for(int i = 0; i < 8; i++)
+            queue.enqueue(i);
+
+        assertTrue(queue.full());
+        assertFalse(queue.empty());
+        assertThrows(IllegalStateException.class, () -> queue.enqueue(8));
+    }
+
 
 }

@@ -1,7 +1,5 @@
 package com.thenullproject.datastructures;
 
-import java.util.Arrays;
-
 /**
  * A simple custom implementation of a dynamic array (mutable array with automatic resizing)
  */
