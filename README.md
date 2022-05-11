@@ -1,5 +1,9 @@
 ## Data Structures
 
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=dyluc_datastructures&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dyluc_datastructures)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=dyluc_datastructures&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dyluc_datastructures)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=dyluc_datastructures&metric=security_rating)](https://sonarcloud.io/dashboard?id=dyluc_datastructures)
+
 ### Arrays
 
 - Contiguous area of memory consisting of equal size elements indexed by contiguous integers.
